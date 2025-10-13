@@ -1,0 +1,54 @@
+# ========================
+# Global (Root) ignores
+# ========================
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Optional cache folders
+.cache/
+*.tsbuildinfo
+*.tgz
+
+# Environment variables
+.env
+.env.*.local
+
+# ========================
+# React (client/)
+# ========================
+
+client/node_modules/
+client/build/
+client/.cache/
+client/.env
+client/.env.*.local
+
+# React testing coverage
+client/coverage/
+
+# ========================
+# Node.js (server/)
+# ========================
+
+server/node_modules/
+server/dist/
+server/build/
+server/.env
+server/.env.*.local
+
+# Server testing coverage
+server/coverage/
