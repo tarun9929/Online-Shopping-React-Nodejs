@@ -52,3 +52,4 @@ server/.env.*.local
 
 # Server testing coverage
 server/coverage/
+temp.md
