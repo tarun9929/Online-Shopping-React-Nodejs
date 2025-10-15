@@ -8,7 +8,8 @@ const connectMongoDb = async() => {
         console.log("mongodb connected successfully");
         console.log(`mongodb connected at host: ${connectionInstance.connection.host}`)
     } catch (error) {
-        console.log("server/src/db/mongodb/index.js -> connectMongoDb -> Cannot Connect Mongodb", error)
+        throw error;
+        process.exit(1);
     }
 }
 
