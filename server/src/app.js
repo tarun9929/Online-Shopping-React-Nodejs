@@ -7,7 +7,9 @@ const app = express();
 // middlewares
 
 app.use(cors({
-    origin: cors_origin
+    origin: cors_origin,
+    allowedHeaders: ["GET" , "POST"],
+    credentials: true
 }));
 
 app.use(express.json({limit: "16kb"}));
