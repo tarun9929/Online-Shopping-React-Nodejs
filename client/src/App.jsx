@@ -9,11 +9,10 @@ import Spinner from './Components/Spinner';
 
 
 function App() {
-  const [loading , setLoading] = useState(true);
+  
 
-  const data = useApiData(async() => {
+  const {data , loading} = useApiData(async() => {
     const response = await axios.get("/api/v1/test" , {withCredentials: true})
-    setLoading(false);
 
     return response.data;
   })
