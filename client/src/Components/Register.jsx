@@ -1,6 +1,7 @@
 import React from 'react';
 import useFormInputData from '../Hooks/useFormInputData';
 import generateStrongPassword from '../Utils/generateStrongPassword';
+import { Link } from 'react-router-dom';
 
 function Register() {
     const { inputData: email, handleInputChange: handleEmailChange } = useFormInputData('');
@@ -105,9 +106,9 @@ function Register() {
 
                     <p className="mt-10 text-center text-sm/6 text-gray-400">
                         Already have an account?{' '}
-                        <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-300">
+                        <Link to={"/login"} className="font-semibold text-indigo-400 hover:text-indigo-300">
                             Login
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>
