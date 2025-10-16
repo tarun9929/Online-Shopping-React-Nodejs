@@ -18,14 +18,6 @@ function Register() {
 
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-900">
-        <body class="h-full">
-        ```
-      */}
             <div className="flex min-h-full h-screen flex-col justify-center px-6 py-12 lg:px-8 bg-black overflow-auto">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h2 className="mt-20 text-center text-2xl/9 font-bold tracking-tight text-white">Create a new account</h2>
