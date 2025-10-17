@@ -27,29 +27,29 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
-
-User.pre("save", function (next) {
-  if (this.isModifed("password")) {
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
     // Hash the password before saving
 
-    this.password = bcrypt.hash(this.password, 10);
+    this.password = await bcrypt.hash(this.password, 10);
     next();
   }
 
   next();
 });
 
-User.methods.isPasswordCurrect = function (password) {
-  return bcrypt.compare(password, this.password);
+userSchema.methods.isPasswordCurrect = async function (password) {
+  return await bcrypt.compare(password, this.password);
 };
 
-User.methods.accessToken = function (payload) {
+userSchema.methods.getAccessToken = function (payload) {
   return jwt.sign(payload, secret_access_token, access_duration);
 };
 
-User.methods.refreshToken = function (payload) {
+userSchema.methods.getRefreshToken = function (payload) {
   return jwt.sign(payload, secret_refresh_token, refresh_duration);
 };
+
+const User = mongoose.model("User", userSchema);
 
 export default User;
