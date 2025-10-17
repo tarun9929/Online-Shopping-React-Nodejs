@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { cors_origin } from './config/dotenv.config.js';
+import userRouter from './routes/users.routes.js'
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: true ,limit: "16kb"}));
 app.use(express.static("public"));
 
 // routes
-
+app.use(userRouter);
 
 // test routes 
 app.get("/api/v1/test", (req, res) => {
