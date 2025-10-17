@@ -1,0 +1,17 @@
+POST http://localhost:3000/api/v1/users/register
+Content-Type: application/json
+
+{
+    "email": "tarundidwaniya1@gmail.com",
+    "password": "123"
+}
+
+###
+
+GET http://localhost:3000/api/v1/test
+Content-Type: application/json
+
+{
+    "email": "tarundidwaniya4@gmail.com",
+    "password": "123"
+}
