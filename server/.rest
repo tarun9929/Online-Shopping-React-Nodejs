@@ -2,9 +2,19 @@ POST http://localhost:3000/api/v1/users/register
 Content-Type: application/json
 
 {
-    "email": "tarundidwaniya1@gmail.com",
+    "email": "tarundidwaniya51@gmail.com",
     "password": "123"
 }
+
+###
+POST http://localhost:3000/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "tarundidwaniya51@gmail.com",
+    "password": "123"
+}
+
 
 ###
 
