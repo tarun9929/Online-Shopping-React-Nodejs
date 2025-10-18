@@ -42,12 +42,16 @@ userSchema.methods.isPasswordCurrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-userSchema.methods.getAccessToken = function (payload) {
-  return jwt.sign(payload, secret_access_token, access_duration);
+userSchema.methods.getAccessToken = function (user) {
+  return jwt.sign(user, secret_access_token, {
+    expiresIn:access_duration
+  });
 };
 
-userSchema.methods.getRefreshToken = function (payload) {
-  return jwt.sign(payload, secret_refresh_token, refresh_duration);
+userSchema.methods.getRefreshToken = function (user) {
+  return jwt.sign(user, secret_refresh_token, {
+    expiresIn: refresh_duration
+  });
 };
 
 const User = mongoose.model("User", userSchema);
