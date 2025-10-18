@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useFormInputData from '../Hooks/useFormInputData';
 import generateStrongPassword from '../Utils/generateStrongPassword';
 import { Link } from 'react-router-dom';
@@ -15,6 +15,10 @@ function Register() {
         handlePasswordConfirmation(null, password);
 
     }
+
+    useEffect(() => {
+        document.title = "Create new account"
+    })
 
     return (
         <>

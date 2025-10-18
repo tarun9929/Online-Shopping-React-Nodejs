@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useFormInputData from '../Hooks/useFormInputData';
 import { Link } from 'react-router-dom';
 
@@ -6,8 +6,13 @@ function Login() {
     const { inputData: email, handleInputChange: handleEmailChange } = useFormInputData('');
     const { inputData: password, handleInputChange: handlePasswordChange } = useFormInputData('');
 
+    useEffect(() => {
+        document.title = "Account Login"
+    })
+
     return (
         <>
+
             <div className="flex min-h-full h-screen flex-col justify-center px-6 py-12 lg:px-8 bg-black overflow-auto">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h2 className="mt-20 text-center text-2xl/9 font-bold tracking-tight text-white">Sign in to your account</h2>

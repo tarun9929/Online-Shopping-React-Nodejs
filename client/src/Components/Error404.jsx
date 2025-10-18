@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function Error404() {
+    useEffect(() => {
+        document.title = "Error 404 Not Found"
+    })
     return (
         <>
             <div className='h-screen w-screen flex justify-center items-center flex-col gap-4'>
