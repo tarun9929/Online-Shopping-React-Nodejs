@@ -3,6 +3,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 import User from "../models/User.model.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import { generateAuthTokens } from "../utils/utilFunctions.js";
+import { cors_origin } from "../config/dotenv.config.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
   if (!req.body) throw new ApiError("All fields are required", 400);
@@ -23,6 +24,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 
   return res
+    .setHeader("Access-Control-Allow-Origin", "*")
     .status(201)
     .json(new ApiResponse("Success", { _id: user._id }, 201));
 });
@@ -44,15 +46,15 @@ export const login = asyncHandler(async (req, res) => {
 
   const token = await generateAuthTokens(user._id);
   const httpOptions = {
-      httpOnly: true,
-      secure: true,     // only send over HTTPS
-      sameSite: 'strict', // helps prevent CSRF
-      maxAge: 24 * 60 * 60 * 1000 // optional: expires in 1 day
-  }
+    httpOnly: true,
+    secure: true, // only send over HTTPS
+    sameSite: "strict", // helps prevent CSRF
+    maxAge: 24 * 60 * 60 * 1000, // optional: expires in 1 day
+  };
 
   res.setHeader("access_token", token.access_token);
 
-  res.cookie('refresh_token', token.refresh_token, httpOptions);
+  res.cookie("refresh_token", token.refresh_token, httpOptions);
 
   return res
     .status(200)

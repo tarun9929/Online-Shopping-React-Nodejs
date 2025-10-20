@@ -1,22 +1,21 @@
 import axios from "../Utils/Axios";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
-export default function useApiData(callback) {
-    const [data, setData] = useState();
-    const [loading , setLoading] = useState(true);
+export default function useApiData() {
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const response = await callback();
-    
-                setData(response);
-                setLoading(false)
-            } catch (error) {
-                console.log(error);
-            }
-        })()
-    } , [])
+  return async (email, password, callback) => {
+    try {
+      console.log("Hello");
+      const response = await callback(email, password);
 
-    return {data , loading};
+      setData(response);
+      setLoading(false);
+
+      return { data, loading };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
