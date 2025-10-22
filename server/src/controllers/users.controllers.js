@@ -23,10 +23,20 @@ export const registerUser = asyncHandler(async (req, res) => {
     password,
   });
 
+  const token = await generateAuthTokens(user._id);
+  const httpOptions = {
+    httpOnly: true,
+    secure: true, // only send over HTTPS
+    sameSite: "strict", // helps prevent CSRF
+    maxAge: 24 * 60 * 60 * 1000, // optional: expires in 1 day
+  };
+
+  res.cookie("refresh_token", token.refresh_token, httpOptions);
+
   return res
-    .setHeader("Access-Control-Allow-Origin", "*")
+    .setHeader("x-auth-token", token.access_token)
     .status(201)
-    .json(new ApiResponse("Success", { _id: user._id }, 201));
+    .json(new ApiResponse("Success", 201, { id: user._id }));
 });
 
 export const login = asyncHandler(async (req, res) => {

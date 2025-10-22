@@ -10,8 +10,12 @@ const app = express();
 app.use(
   cors({
     origin: cors_origin,
-    allowedHeaders: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["x-auth-token"],
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
   })
 );
 

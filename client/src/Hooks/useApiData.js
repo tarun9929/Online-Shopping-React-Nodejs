@@ -15,6 +15,7 @@ export default function useApiData() {
 
       return { data, loading };
     } catch (error) {
+      console.log("Error !");
       console.log(error);
     }
   };

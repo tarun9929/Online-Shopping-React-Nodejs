@@ -1,13 +1,11 @@
 import axios from "./Axios";
 
 export class User {
-  registerUser(email, password) {
-    return async () => {
-      if (!email || !password) throw Error("All fields are required");
+  async registerUser(email, password) {
+    if (!email || !password) throw Error("All fields are required");
 
-      console.log(email, password);
-
-      const response = await axios.post(
+    try {
+      this.response = await axios.post(
         "/api/v1/users/register",
         {
           email,
@@ -20,9 +18,12 @@ export class User {
           withCredentials: true,
         }
       );
+    } catch (error) {
+      throw new Error(error.message);
+      console.log(error);
+    }
 
-      console.log(response.data);
-    };
+    return this.response;
   }
 }
 

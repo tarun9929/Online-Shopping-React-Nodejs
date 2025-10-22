@@ -15,8 +15,6 @@ function Register() {
     handleInputChange: handlePasswordConfirmation,
   } = useFormInputData("");
 
-  const fn = useApiData();
-
   function suggestPassword() {
     const password = generateStrongPassword();
 
@@ -24,13 +22,16 @@ function Register() {
     handlePasswordConfirmation(null, password);
   }
 
-  function submitForm(event) {
+  async function submitForm(event) {
     event.preventDefault();
     if (password !== confirmation) {
       alert("The confirmation password doesn't match the original password");
     }
 
-    fn(email, password, user.registerUser);
+    const response = await user.registerUser(email, password);
+
+    console.log(response);
+    console.log(response.headers["x-auth-token"]);
   }
 
   useEffect(() => {
